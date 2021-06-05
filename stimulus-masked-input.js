@@ -3,10 +3,16 @@ class MaskedInputController extends Stimulus.Controller {
   
   static values = {
   	mask: String,
+    autoclear: Boolean,
+    placeholder: String
   }
   
   connect() {
-  	$(this.fieldTarget).mask(this.maskValue)
+  	if(this.placeholderValue === ""){
+    	this.placeholderValue = "_"
+    }
+    
+  	$(this.fieldTarget).mask(this.maskValue, { autoclear: this.autoclearValue, placeholder: this.placeholderValue })
   }
   
 }
